@@ -1,12 +1,12 @@
 const express = require('express')
 
-module.exports = function(server) {
+module.exports = function (server) {
+   // definir URL base para todos os end points
+   const router = express.Router()
+   server.use('/api', router)
 
-    // Defenir URL base para todas as rotas
-    const router = express.Router()
-    server.use('/api', router)
+   // end points Ciclo de Pagamento
+   const BillingCycle = require('../api/billingCycle/billingCycleService')
+   BillingCycle.register(router, '/billingCycles')
 
-    // rotas de ciclo de Pagamentos
-    const BillingCycle = require('../api/billingCycle/billingCycleService')
-    BillingCycle.register(router, '/billingCycle')
 }
